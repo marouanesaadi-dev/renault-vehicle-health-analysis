@@ -16,3 +16,7 @@ Prerequisites: JDK 21, Maven 3.9+, Docker Compose.
 - WireMock simulates the external recall API.
 
 The exercise does not define score thresholds. The chosen deductions are explicit assumptions in the detailed README; confirm or adjust them with the interviewer.
+
+
+## Source code
+The complete project source is available in [source.zip](./source.zip).
