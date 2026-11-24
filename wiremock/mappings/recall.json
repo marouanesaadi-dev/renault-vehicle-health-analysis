@@ -1,0 +1,8 @@
+{
+  "request": { "method": "GET", "urlPathPattern": "/api/recalls/.*" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": { "activeRecall": false }
+  }
+}
