@@ -35,7 +35,7 @@ class AnalysisIntegrationTest {
                 .willReturn(aResponse().withStatus(200).withHeader("Content-Type","application/json")
                         .withBody("{\"activeRecall\":true}")));
         TelemetryRequest request=new TelemetryRequest("VF1AAAAA123456789",Instant.parse("2026-11-24T10:00:00Z"),120_000,
-                List.of(2.3,2.2,2.4,2.3),12.4,90,40,List.of("P0420"));
+                List.of(2.3,2.2,2.4,2.3),12.4,90.0,40.0,List.of("P0420"));
 
         ResponseEntity<HealthReport> accepted=http.postForEntity("/internal/analysis",request,HealthReport.class);
         assertThat(accepted.getStatusCode()).isEqualTo(HttpStatus.ACCEPTED);
