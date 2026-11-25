@@ -7,11 +7,18 @@ import ma.renault.analysis.application.port.RecallProvider;
 
 @Component
 public class RecallClient implements RecallProvider {
-    private final RestClient client;
-    public RecallClient(@Value("${recall-provider.url:http://localhost:8090}") String url) { client=RestClient.builder().baseUrl(url).build(); }
-    @Override public boolean hasActiveRecall(String vin) {
-        RecallResponse response=client.get().uri("/api/recalls/{vin}",vin).retrieve().body(RecallResponse.class);
-        return response!=null && response.activeRecall();
-    }
-    public record RecallResponse(boolean activeRecall) { }
+	private final RestClient client;
+
+	public RecallClient(@Value("${recall-provider.url:http://localhost:8090}") String url) {
+		client = RestClient.builder().baseUrl(url).build();
+	}
+
+	@Override
+	public boolean hasActiveRecall(String vin) {
+		RecallResponse response = client.get().uri("/api/recalls/{vin}", vin).retrieve().body(RecallResponse.class);
+		return response != null && response.activeRecall();
+	}
+
+	public record RecallResponse(boolean activeRecall) {
+	}
 }

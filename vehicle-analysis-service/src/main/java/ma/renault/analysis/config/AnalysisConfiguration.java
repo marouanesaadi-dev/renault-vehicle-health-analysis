@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AnalysisConfiguration {
-    @Bean
-    HealthScoreCalculator healthScoreCalculator() { return new HealthScoreCalculator(); }
+	@Bean
+	HealthScoreCalculator healthScoreCalculator() {
+		return new HealthScoreCalculator();
+	}
 }

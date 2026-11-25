@@ -10,14 +10,24 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AnalysisService {
-    private final RecallProvider recallProvider;
-    private final HealthScoreCalculator calculator;
-    private final HealthReportStore reportStore;
-    public AnalysisService(RecallProvider recallProvider,HealthScoreCalculator calculator,HealthReportStore reportStore) { this.recallProvider=recallProvider; this.calculator=calculator; this.reportStore=reportStore; }
-    public HealthReport analyze(TelemetryRequest telemetry) {
-        HealthReport report=calculator.calculate(telemetry, recallProvider.hasActiveRecall(telemetry.vin()));
-        reportStore.save(report);
-        return report;
-    }
-    public Optional<HealthReport> report(String vin) { return reportStore.findByVin(vin); }
+	private final RecallProvider recallProvider;
+	private final HealthScoreCalculator calculator;
+	private final HealthReportStore reportStore;
+
+	public AnalysisService(RecallProvider recallProvider, HealthScoreCalculator calculator,
+			HealthReportStore reportStore) {
+		this.recallProvider = recallProvider;
+		this.calculator = calculator;
+		this.reportStore = reportStore;
+	}
+
+	public HealthReport analyze(TelemetryRequest telemetry) {
+		HealthReport report = calculator.calculate(telemetry, recallProvider.hasActiveRecall(telemetry.vin()));
+		reportStore.save(report);
+		return report;
+	}
+
+	public Optional<HealthReport> report(String vin) {
+		return reportStore.findByVin(vin);
+	}
 }
