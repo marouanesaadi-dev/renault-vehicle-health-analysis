@@ -16,9 +16,9 @@ public class AnalysisController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public HealthReport analyze(@RequestBody @jakarta.validation.Valid TelemetryRequest request) { return service.analyze(request); }
     @GetMapping("/api/v1/vehicles/{vin}/health-report")
-    public HealthReport report(@PathVariable String vin) { return requireReport(vin); }
+    public HealthReport report(@PathVariable("vin") String vin) { return requireReport(vin); }
     @GetMapping("/api/v1/vehicles/{vin}/alerts")
-    public List<Alert> alerts(@PathVariable String vin) { return requireReport(vin).alerts(); }
+    public List<Alert> alerts(@PathVariable("vin") String vin) { return requireReport(vin).alerts(); }
     private HealthReport requireReport(String vin) {
         return service.report(vin).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"No analysis available for VIN"));
     }
